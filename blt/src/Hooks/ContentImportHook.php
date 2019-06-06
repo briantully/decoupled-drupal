@@ -32,7 +32,7 @@ class ContentImportHook extends BltTasks {
   protected function migrateContent() {
     $task = $this->taskDrush()
       ->drush("cc drush")
-      ->drush("mi --all")
+//      ->drush("mim --all")
       ->drush("cr");
     $task->run();
   }
