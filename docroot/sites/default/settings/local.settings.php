@@ -5,6 +5,8 @@
  * Local development override configuration feature.
  */
 
+use Drupal\Component\Assertion\Handle;
+
 /**
  * Database configuration.
  */
@@ -26,7 +28,7 @@ $databases = array(
 );
 
 // Use development service parameters.
-$settings['container_yamls'][] = $dir . '/docroot/sites/development.services.yml';
+$settings['container_yamls'][] = DRUPAL_ROOT . '/sites/development.services.yml';
 
 // Allow access to update.php.
 $settings['update_free_access'] = TRUE;
@@ -48,7 +50,7 @@ $settings['update_free_access'] = TRUE;
  * @see https://wiki.php.net/rfc/expectations
  */
 assert_options(ASSERT_ACTIVE, TRUE);
-\Drupal\Component\Assertion\Handle::register();
+Handle::register();
 
 /**
  * Show all error messages, with backtrace information.
@@ -76,8 +78,7 @@ $config['system.performance']['js']['preprocess'] = FALSE;
  *
  * Do not use this setting until after the site is installed.
  */
-# $settings['cache']['bins']['render'] = 'cache.backend.null';
-
+// $settings['cache']['bins']['render'] = 'cache.backend.null';
 /**
  * Disable Dynamic Page Cache.
  *
@@ -85,8 +86,7 @@ $config['system.performance']['js']['preprocess'] = FALSE;
  * cacheability metadata is present (and hence the expected behavior). However,
  * in the early stages of development, you may want to disable it.
  */
-# $settings['cache']['bins']['dynamic_page_cache'] = 'cache.backend.null';
-
+// $settings['cache']['bins']['dynamic_page_cache'] = 'cache.backend.null';
 /**
  * Allow test modules and themes to be installed.
  *
@@ -107,7 +107,7 @@ $settings['extension_discovery_scan_tests'] = FALSE;
 $settings['rebuild_access'] = FALSE;
 
 /**
- * Temporary file path:
+ * Temporary file path.
  *
  * A local file system path where temporary files will be stored. This
  * directory should not be accessible over the web.
@@ -122,7 +122,7 @@ $config['system.file']['path']['temporary'] = '/tmp';
 /**
  * Private file path.
  */
-$settings['file_private_path'] = $dir . '/files-private';
+$settings['file_private_path'] = DRUPAL_ROOT . '../files-private';
 
 /**
  * Trusted host configuration.
