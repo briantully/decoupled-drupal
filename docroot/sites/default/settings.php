@@ -765,3 +765,11 @@ $settings['file_scan_ignore_directories'] = [
 # }
 require DRUPAL_ROOT . "/../vendor/acquia/blt/settings/blt.settings.php";
 $settings['install_profile'] = 'decoupled';
+/**
+ * IMPORTANT.
+ *
+ * Do not include additional settings here. Instead, add them to settings
+ * included by `blt.settings.php`. See BLT's documentation for more detail.
+ *
+ * @link http://blt.readthedocs.io
+ */

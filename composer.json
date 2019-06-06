@@ -10,38 +10,43 @@
     ],
     "license": "MIT",
     "type": "project",
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "require": {
-        "acquia/blt": "^8.9.10",
-        "acquia/lightning": "^2.1.7",
-        "drupal/migrate_plus": "^4.0-beta1",
-        "drupal/migrate_tools": "^4.0-beta1",
-        "drupal/migrate_source_csv": "~2",
-        "geerlingguy/drupal-vm": "~4.3"
-    },
-    "require-dev": {
-    },
-    "repositories": [
-        {
+    "repositories": {
+        "0": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        },
+        "drupal": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        },
+        "asset-packagist": {
             "type": "composer",
             "url": "https://asset-packagist.org"
         }
-    ],
+    },
+    "require": {
+        "acquia/blt": "^9.2",
+        "composer/installers": "^1.6",
+        "cweagans/composer-patches": "^1.6",
+        "drupal/config_split": "^1.4",
+        "drupal/migrate_plus": "^4.2",
+        "drupal/migrate_source_csv": "^3.0",
+        "drupal/migrate_tools": "^4.1",
+        "geerlingguy/drupal-vm": "~4.9.2",
+        "zaporylie/composer-drupal-optimizations": "^1.1"
+    },
+    "require-dev": {},
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "config": {
+        "sort-packages": true
+    },
     "extra": {
         "enable-patching": true,
-        "patches": {
-            "drupal/core": {
-                "cm uninstall": "https://www.drupal.org/files/issues/drupal-2877119-2.patch",
-                "cm install from profile core": "https://www.drupal.org/files/issues/2788777-91.patch"
-            },
-            "geerlingguy/drupal-vm": {
-                "php-xdebug-cli": "./patches/ansible-role-php-xdebug-54.patch"
-            }
-        },
         "installer-types": [
-            "npm-asset",
-            "bower-asset"
+            "bower-asset",
+            "npm-asset"
         ],
         "installer-paths": {
             "docroot/core": [
@@ -70,13 +75,14 @@
                 "type:bower-asset",
                 "type:npm-asset"
             ],
-            "drush/contrib/{$name}": [
+            "drush/Commands/{$name}": [
                 "type:drupal-drush"
             ]
         },
         "merge-plugin": {
             "require": [
-                "vendor/acquia/blt/composer.required.json"
+                "blt/composer.required.json",
+                "blt/composer.suggested.json"
             ],
             "include": [
                 "blt/composer.overrides.json"
@@ -84,7 +90,10 @@
             "merge-extra": true,
             "merge-extra-deep": true,
             "merge-scripts": true,
-            "replace": true
+            "replace": false,
+            "ignore-duplicates": true
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
