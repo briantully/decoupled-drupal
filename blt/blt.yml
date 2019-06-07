@@ -41,6 +41,11 @@ behat:
 disable-targets:
   git:
     commit-msg: true
+  tests:
+    phpcs:
+      sniff:
+        all: true
+        files: true
 setup:
   drupal:
     install: { import-config: false }
